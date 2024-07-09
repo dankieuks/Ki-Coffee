@@ -1,11 +1,15 @@
 import React from "react";
 import Header from "./Header/Header";
+import NavBar from "./Header/NavBar";
+import HeaderSider from "./Header/HeaderSider";
 
 function DefaultLayout({ children }) {
   return (
     <section className="  ">
+      <HeaderSider />
       <Header />
-      <main className="grid grid-cols-6 w-full col-span-6 mx-0 md:mx-36">
+      <NavBar />
+      <main className="grid grid-cols-6  col-span-6 mx-0 md:mx-36">
         {children}
       </main>
     </section>
