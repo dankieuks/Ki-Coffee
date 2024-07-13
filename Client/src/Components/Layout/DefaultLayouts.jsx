@@ -5,13 +5,11 @@ import HeaderSider from "./Header/HeaderSider";
 
 function DefaultLayout({ children }) {
   return (
-    <section className="  ">
+    <section className="grid grid-cols-6 ">
       <HeaderSider />
       <Header />
       <NavBar />
-      <main className="grid grid-cols-6  col-span-6 mx-0 md:mx-36">
-        {children}
-      </main>
+      <main className="col-span-6  mx-0 md:mx-36">{children}</main>
     </section>
   );
 }

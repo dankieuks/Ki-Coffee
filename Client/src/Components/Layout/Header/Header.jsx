@@ -28,7 +28,7 @@ function Header() {
   ];
 
   return (
-    <header className="grid grid-cols-6 px-[2.5%] md:grid-cols-9 gap-x-4  py-4 lg:py-2 shadow-md bg-red-800  md:px-[12.5%]">
+    <header className="grid grid-cols-6 col-span-6 px-[2.5%] md:grid-cols-9 gap-x-4  py-4 lg:py-2 shadow-md bg-red-800  md:px-[12.5%]">
       <div className="col-span-3  md:col-span-2 md:gap-x-11 text-3xl  text-white  opacity-90 flex items-center justify-start ">
         <Link className="flex flex-col items-center opacity-80  ">
           <SlMenu className="font-semibold ml-4 md:ml-0" />
