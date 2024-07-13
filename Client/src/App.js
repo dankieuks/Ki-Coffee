@@ -5,10 +5,14 @@ import DefaultLayout from "./Components/Layout/DefaultLayouts.jsx";
 import Home from "./Pages/Home.jsx";
 import Menu from "./Pages/Menu.jsx";
 
+import Auth from "./Pages/Auth/Auth.jsx";
+
 function App() {
   const publicRouter = [
     { path: "/", pages: Home },
     { path: "/menu", pages: Menu },
+    { path: "/login", pages: Auth },
+    { path: "/register", pages: Auth },
   ];
   return (
     <Router>
@@ -28,6 +32,7 @@ function App() {
             />
           );
         })}
+        <Route path="" element={""} />
       </Routes>
     </Router>
   );

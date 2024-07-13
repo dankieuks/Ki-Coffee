@@ -1,9 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Spicy+Rice&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Calistoga&family=Spicy+Rice&display=swap");
+
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-headerSlider {
-  font-family: "Spicy Rice";
+.headerSide {
+  font-family: Calistoga;
+  background: #503629;
 }

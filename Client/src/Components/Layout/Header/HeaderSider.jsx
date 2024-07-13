@@ -26,7 +26,7 @@ function HeaderSider() {
   return (
     <Slider
       {...settings}
-      className="bg-amber-950 grid grid-cols-1 text-md text-gray-200 headerSlider"
+      className=" grid grid-cols-1 text-md text-gray-300 headerSide"
     >
       {sliderItems.map((item, index) => (
         <div key={index} className="col-span-1 py-1 ">

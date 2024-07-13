@@ -53,7 +53,7 @@ function Header() {
       </div>
       <nav className="col-span-2 md:col-span-2 px-4 flex items-center justify-center  text-2xl text-white opacity-80">
         <Link
-          to="/"
+          to="/login"
           className="flex flex-col items-center opacity-80 py-1 px-3 md:border-l"
         >
           <AiOutlineUser />
