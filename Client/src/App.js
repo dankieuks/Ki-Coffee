@@ -1,11 +1,10 @@
-import { Fragment } from "react";
+import React, { Fragment } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import DefaultLayout from "./Components/Layout/DefaultLayouts.jsx";
-import Home from "./Pages/Home.jsx";
-import Menu from "./Pages/Menu.jsx";
-
-import Auth from "./Pages/Auth/Auth.jsx";
+import DefaultLayout from "./Components/Layout/DefaultLayouts";
+import Home from "./Pages/Home";
+import Menu from "./Pages/Menu";
+import Auth from "./Pages/Auth/Auth";
 
 function App() {
   const publicRouter = [
@@ -14,11 +13,12 @@ function App() {
     { path: "/login", pages: Auth },
     { path: "/register", pages: Auth },
   ];
+
   return (
     <Router>
       <Routes>
         {publicRouter.map((route, index) => {
-          const Layout = route.Layout === null ? Fragment : DefaultLayout;
+          const Layout = route.Layout ? route.Layout : DefaultLayout;
           const Page = route.pages;
           return (
             <Route
@@ -32,7 +32,7 @@ function App() {
             />
           );
         })}
-        <Route path="" element={""} />
+        <Route path="" element={null} />
       </Routes>
     </Router>
   );

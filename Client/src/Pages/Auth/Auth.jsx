@@ -5,18 +5,18 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Register from "./Register";
 import Login from "./Login";
-
+import authbanner from "../../Assets/authbanner.jpg";
 function Auth() {
   const [isSignIn, setIsSignIn] = useState(true);
 
   return (
-    <main className="flex justify-center items-center  md:my-7">
+    <main className="flex justify-center items-center  md:my-7 ">
       <div className="grid grid-cols-7 lg:grid-cols-6 shadow-lg rounded-lg md:pb-0 lg:pb-6">
         <section className="md:col-span-3 lg:col-span-3 hidden md:block items-center justify-center h-[100%] rounded-lg">
           <img
-            src="https://bizweb.dktcdn.net/thumb/large/100/465/740/products/spkhonglogo-moka-01.jpg?v=1720583844583"
+            src={authbanner}
             alt=""
-            className="lg:max-w-sm"
+            className="lg:max-w-sm shadow-lg rounded-tl-lg "
           />
           <footer className="mt-8 px-4 text-gray-500 text-sm max-w-sm text-justify">
             <p className="hover:underline">QUYỀN LỢI THÀNH VIÊN</p>
@@ -42,11 +42,11 @@ function Auth() {
           </footer>
         </section>
         <section className=" col-span-7  md:col-span-4 lg:col-span-3  p-8 w-full max-w-sm  ">
-          <header className="grid grid-cols-2 text-center mb-6 border-b-2">
+          <header className="grid grid-cols-2 text-center mb-6 border-b-2  ">
             <Link
               to="/login"
               onClick={() => setIsSignIn(true)}
-              className={`py-2 font-semibold ${
+              className={`py-2 font-semibold border-r-2 ${
                 isSignIn
                   ? "text-red-600 border-b-2 border-red-600"
                   : "text-gray-600"
@@ -57,7 +57,7 @@ function Auth() {
             <Link
               to="/register"
               onClick={() => setIsSignIn(false)}
-              className={`py-2 font-semibold ${
+              className={`py-2 font-semibold border-l-2 ${
                 !isSignIn
                   ? "text-red-600 border-b-2 border-red-600"
                   : "text-gray-600"
