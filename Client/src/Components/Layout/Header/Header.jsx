@@ -1,3 +1,6 @@
+import { BiTrash } from "react-icons/bi";
+import { AiFillPlusSquare } from "react-icons/ai";
+import { AiOutlinePlus } from "react-icons/ai";
 import React, { useState } from "react";
 import { SlMenu } from "react-icons/sl";
 import { AiOutlineSearch, AiOutlineUser } from "react-icons/ai";
@@ -5,8 +8,162 @@ import { BsCart2 } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import logo4 from "../../../Assets/logo4.png";
 
+import SwipeableDrawer from "@mui/material/SwipeableDrawer";
+import Box from "@mui/material/Box";
+import List from "@mui/material/List";
+import Divider from "@mui/material/Divider";
+import ListItem from "@mui/material/ListItem";
+
+import ListItemText from "@mui/material/ListItemText";
+import Button from "@mui/material/Button";
 function Header() {
-  const [cartCount, setCartCount] = useState(11);
+  const [state, setState] = useState({ right: false });
+  const [cart, setCart] = useState([
+    {
+      id: 1,
+      name: "Sản phẩm 1",
+      price: 100000,
+    },
+    {
+      id: 1,
+      name: "Sản phẩm 1",
+      price: 100000,
+    },
+    {
+      id: 1,
+      name: "Sản phẩm 1",
+      price: 100000,
+    },
+    {
+      id: 1,
+      name: "Sản phẩm 1",
+      price: 100000,
+    },
+    {
+      id: 1,
+      name: "Sản phẩm 1",
+      price: 100000,
+    },
+    {
+      id: 1,
+      name: "Sản phẩm 1",
+      price: 100000,
+    },
+    {
+      id: 1,
+      name: "Sản phẩm 1",
+      price: 100000,
+    },
+    {
+      id: 1,
+      name: "Sản phẩm 1",
+      price: 100000,
+    },
+    {
+      id: 1,
+      name: "Sản phẩm 1",
+      price: 100000,
+    },
+    {
+      id: 1,
+      name: "Sản phẩm 1",
+      price: 100000,
+    },
+    {
+      id: 1,
+      name: "Sản phẩm 1",
+      price: 100000,
+    },
+    {
+      id: 1,
+      name: "Sản phẩm 1",
+      price: 100000,
+    },
+  ]);
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (
+      event &&
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+
+    setState({ ...state, [anchor]: open });
+  };
+
+  const addToCart = (product) => {
+    setCart([...cart, product]);
+  };
+
+  const product = {
+    id: 1,
+    name: "Sản phẩm 1",
+    price: 100000,
+  };
+  const removeFromCart = (index) => {
+    const newCart = cart.filter((_, i) => i !== index);
+    setCart(newCart);
+  };
+  const list = (anchor) => (
+    <Box
+      sx={{
+        width: anchor === "top" || anchor === "bottom" ? "auto" : 400,
+      }}
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
+      {" "}
+      <div className=" flex text-lg font-semibold p-3">
+        Giỏ hàng : <h2 className="text-red-700 px-1">{cart.length}</h2> sản phẩm
+      </div>
+      <Divider />
+      <List className="max-h-[500px] overflow-y-auto">
+        {cart.length > 0 ? (
+          cart.map((item, index) => (
+            <div key={index} className="flex justify-evenly py-1 ">
+              <img
+                src="https://product.hstatic.net/1000075078/product/1719929441_bo-sua-pmt_77e27a929b5340e5bc7b83bb1963f0eb_large.jpg"
+                alt=""
+                className="w-[50px] h-[50px]"
+              />
+              <div>
+                <h1>{item.name}</h1>
+                <h1>{item.price}</h1>
+              </div>
+              <div className="flex justify-between items-center gap-4 text-2xl">
+                <AiFillPlusSquare />
+                <BiTrash
+                  className="text-red-500 cursor-pointer"
+                  onClick={() => removeFromCart(index)}
+                />
+              </div>
+            </div>
+          ))
+        ) : (
+          <ListItem>
+            <ListItemText primary="Giỏ hàng trống" />
+          </ListItem>
+        )}
+      </List>
+      <Divider />
+      <div>
+        <div className="flex justify-between items-center   p-2 bg-white shadow-md sticky bottom-0">
+          <span className="text-lg font-semibold">Tổng tiền:</span>
+          <span className="text-red-700 font-bold text-lg">
+            {cart
+              .reduce((total, item) => total + item.price, 0)
+              .toLocaleString()}{" "}
+            VND
+          </span>
+        </div>
+        <Button sx={{ float: "right", margin: "10px " }} variant="contained">
+          Thanh toán
+        </Button>
+      </div>
+    </Box>
+  );
   const items = [
     { to: "/", label: "Trang Chủ" },
     { to: "/Menu", label: "Menu" },
@@ -46,17 +203,29 @@ function Header() {
           <AiOutlineUser className="text-2xl opacity-80" />
           <p className="text-sm hidden xl:block">Tài khoản</p>
         </Link>
-        <Link className="flex flex-col items-center border-0 px-3 md:border-l opacity-80">
+        <Link
+          className="flex flex-col items-center border-0 px-3 md:border-l opacity-80"
+          onClick={toggleDrawer("right", true)}
+        >
           <div className="relative">
             <BsCart2 className="text-2xl opacity-80" />
-            {cartCount > 0 && (
+            {(cart.length > 0 && 0) || (
               <span className="absolute top-[-5px] right-[-10px] inline-flex items-center justify-center px-1 py-1 text-xs font-semibold leading-none text-yellow-400 bg-red-600 rounded-full">
-                {cartCount}
+                {cart.length}
               </span>
             )}
           </div>
           <p className="text-sm hidden xl:block">Giỏ hàng</p>
         </Link>
+
+        <SwipeableDrawer
+          anchor="right"
+          open={state.right}
+          onClose={toggleDrawer("right", false)}
+          onOpen={toggleDrawer("right", true)}
+        >
+          {list("right")}
+        </SwipeableDrawer>
       </nav>
     </header>
   );

@@ -1,8 +1,10 @@
 import { BiCartAdd } from "react-icons/bi";
 import { BiCartDownload } from "react-icons/bi";
-import React from "react";
+import * as React from "react";
+import Rating from "@mui/material/Rating";
 import { FaShoppingCart, FaStar } from "react-icons/fa";
 function BestSeller() {
+  const [value, setValue] = React.useState(2);
   const drinks = [
     {
       name: "Cà Phê Sữa Đá",
@@ -79,16 +81,20 @@ function BestSeller() {
             <div className="absolute bottom-5 bg-slate-400 p-3 rounded-tl-[35px] rounded-br-[35px] w-full flex flex-col items-center">
               <h2 className="text-white text-sm md:text-sm  lg:text-lg font-bold relative group">
                 {drink.name}
+                <div className="absolute left-0 top-full  rounded-tl-[35px] rounded-br-[35px]  bg-green-200 text-black sm:hidden text-xs md:text-sm p-4 mt-2 hidden group-hover:block">
+                  {drink.description}
+                </div>
               </h2>
               <p className="text-white text-xs md:text-sm">{drink.salePrice}</p>
-              <div className="flex justify-between  gap-4 md:gap-12 ">
-                <div className="flex items-center ">
-                  <FaStar className="text-yellow-400" />
-                  <FaStar className="text-yellow-400" />
-                  <FaStar className="text-yellow-400" />
-                  <FaStar className="text-yellow-400" />
-                  <FaStar className="text-yellow-400" />
-                </div>
+              <div className="flex justify-between items-center gap-4 md:gap-12 ">
+                <Rating
+                  sx={{ fontSize: "18px" }}
+                  name="simple-controlled"
+                  value={value}
+                  onChange={(event, newValue) => {
+                    setValue(newValue);
+                  }}
+                />
                 <button className="  text-white rounded flex items-center">
                   <BiCartAdd className="text-red-600- text-3xl" />
                 </button>

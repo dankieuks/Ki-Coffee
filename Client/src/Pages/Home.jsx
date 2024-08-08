@@ -4,6 +4,7 @@ import DiscountCode from "../Components/DiscountCode";
 import Banner from "../Components/Banner";
 import BestSeller from "../Components/BestSeller";
 
+
 function Home() {
   return (
     <section className="m-2">
@@ -11,6 +12,7 @@ function Home() {
       <DiscountCode />
       <BestSeller />
       <ToplistPro />
+     
     </section>
   );
 }
