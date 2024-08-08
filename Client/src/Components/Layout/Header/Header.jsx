@@ -18,66 +18,74 @@ import ListItemText from "@mui/material/ListItemText";
 import Button from "@mui/material/Button";
 function Header() {
   const [state, setState] = useState({ right: false });
+  const [quantity, setQuantity] = useState(1);
   const [cart, setCart] = useState([
     {
       id: 1,
       name: "Sản phẩm 1",
       price: 100000,
+      quantity: 1,
+    },
+
+    {
+      id: 1,
+      name: "Sản phẩm 1",
+      price: 100000,
+      quantity: 1,
     },
     {
       id: 1,
       name: "Sản phẩm 1",
       price: 100000,
+      quantity: 1,
     },
     {
       id: 1,
       name: "Sản phẩm 1",
       price: 100000,
+      quantity: 1,
     },
     {
       id: 1,
       name: "Sản phẩm 1",
       price: 100000,
+      quantity: 1,
     },
     {
       id: 1,
       name: "Sản phẩm 1",
       price: 100000,
+      quantity: 1,
     },
     {
       id: 1,
       name: "Sản phẩm 1",
       price: 100000,
+      quantity: 1,
     },
     {
       id: 1,
       name: "Sản phẩm 1",
       price: 100000,
+      quantity: 1,
     },
     {
       id: 1,
       name: "Sản phẩm 1",
       price: 100000,
+      quantity: 1,
     },
     {
       id: 1,
       name: "Sản phẩm 1",
       price: 100000,
+      quantity: 1,
     },
     {
       id: 1,
       name: "Sản phẩm 1",
       price: 100000,
-    },
-    {
-      id: 1,
-      name: "Sản phẩm 1",
-      price: 100000,
-    },
-    {
-      id: 1,
-      name: "Sản phẩm 1",
-      price: 100000,
+      quantity: 1,
     },
   ]);
   const toggleDrawer = (anchor, open) => (event) => {
@@ -95,12 +103,12 @@ function Header() {
   const addToCart = (product) => {
     setCart([...cart, product]);
   };
-
-  const product = {
-    id: 1,
-    name: "Sản phẩm 1",
-    price: 100000,
+  const increaseQuantity = (index) => {
+    const updatedCart = [...cart];
+    updatedCart[index].quantity += 1;
+    setCart(updatedCart);
   };
+
   const removeFromCart = (index) => {
     const newCart = cart.filter((_, i) => i !== index);
     setCart(newCart);
@@ -114,26 +122,34 @@ function Header() {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      {" "}
-      <div className=" flex text-lg font-semibold p-3">
-        Giỏ hàng : <h2 className="text-red-700 px-1">{cart.length}</h2> sản phẩm
+      <div className="flex text-lg font-semibold p-3">
+        Giỏ hàng: <h2 className="text-red-700 px-1">{cart.length}</h2> sản phẩm
       </div>
       <Divider />
       <List className="max-h-[500px] overflow-y-auto">
         {cart.length > 0 ? (
           cart.map((item, index) => (
-            <div key={index} className="flex justify-evenly py-1 ">
+            <div key={index} className="flex justify-evenly py-1">
               <img
                 src="https://product.hstatic.net/1000075078/product/1719929441_bo-sua-pmt_77e27a929b5340e5bc7b83bb1963f0eb_large.jpg"
-                alt=""
+                alt={item.name}
                 className="w-[50px] h-[50px]"
               />
               <div>
                 <h1>{item.name}</h1>
-                <h1>{item.price}</h1>
+                <h1>
+                  {item.price.toLocaleString()} VND
+                  <span className="text-gray-500 text-sm">
+                    {" "}
+                    x {item.quantity}
+                  </span>
+                </h1>
               </div>
               <div className="flex justify-between items-center gap-4 text-2xl">
-                <AiFillPlusSquare />
+                <AiFillPlusSquare
+                  className="cursor-pointer"
+                  onClick={() => increaseQuantity(index)}
+                />
                 <BiTrash
                   className="text-red-500 cursor-pointer"
                   onClick={() => removeFromCart(index)}
@@ -149,16 +165,16 @@ function Header() {
       </List>
       <Divider />
       <div>
-        <div className="flex justify-between items-center   p-2 bg-white shadow-md sticky bottom-0">
+        <div className="flex justify-between items-center p-2 bg-white shadow-md sticky bottom-0">
           <span className="text-lg font-semibold">Tổng tiền:</span>
           <span className="text-red-700 font-bold text-lg">
             {cart
-              .reduce((total, item) => total + item.price, 0)
+              .reduce((total, item) => total + item.price * item.quantity, 0)
               .toLocaleString()}{" "}
             VND
           </span>
         </div>
-        <Button sx={{ float: "right", margin: "10px " }} variant="contained">
+        <Button sx={{ float: "right", margin: "10px" }} variant="contained">
           Thanh toán
         </Button>
       </div>
